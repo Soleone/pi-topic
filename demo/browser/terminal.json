@@ -1,0 +1,43 @@
+{
+  "project": "../..",
+  "mount": {
+    ".": {
+      "from": "./home"
+    },
+    ".pi-app": {
+      "from": "./.build/pi-app"
+    },
+    ".pi/agent/extensions/pi-topic": {
+      "from": "../..",
+      "include": [
+        "src",
+        "package.json"
+      ]
+    }
+  },
+  "env": {
+    "PATH": "~/bin:/usr/local/bin:/usr/bin:/bin",
+    "PI_OFFLINE": "1"
+  },
+  "setup": [
+    "chmod +x bin/pi bin/git bin/fd bin/rg",
+    "node .demo/setup.js",
+    "npm install --no-audit --no-fund"
+  ],
+  "start": "cd project && pi",
+  "onTheme": "node .demo/pi-theme.js",
+  "welcome": [
+    "\u001b[1mpi-topic\u001b[0m keeps a one-line topic of what you're working on right above pi's input.",
+    "This is real pi with the extension. The model is scripted, so it knows a few prompts and needs no key.",
+    "pi opens by itself in a small sample project. Press the buttons above, in order:",
+    "",
+    "  the forecast for new york is missing   the ◆ line shows your words, then the model's topic",
+    "  add a --json flag                      a new request, a new topic",
+    "",
+    "Change the theme at the top right and pi follows it."
+  ],
+  "hints": [
+    "the forecast for new york is missing",
+    "add a --json flag"
+  ]
+}

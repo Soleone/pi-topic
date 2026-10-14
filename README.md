@@ -1,23 +1,26 @@
 # pi-topic
 
-A small Pi extension that shows a persistent **session topic** line directly
-above the input editor. It asks Pi's active model for a compact task subject
-and keeps that subject stable for the current user request - the same content
-pi-herdr-tabs writes to a Herdr tab, but rendered inside Pi itself where the
-character budget is generous.
+A one-line topic of what you're working on, kept right above [pi](https://pi.dev)'s input.
 
-## Why
+**[Try it in your browser](https://pi-topic.soleone.xyz)**: real pi with the extension, on a scripted model, so no key and nothing leaves the page.
 
-Herdr tab titles are capped at roughly 24 characters, which forces terse,
-sometimes cryptic labels. The widget above Pi's input has no such limit: the
-topic can be a full readable sentence fragment, truncates only visually to the
-terminal width, and works in any terminal whether or not Herdr is running.
+![pi working on two requests: the ◆ line above the input first shows each prompt, then the topic the model sums it up as](demo/media/demo.webp)
+
+Each request shows its own first line on the ◆ line right away, then pi's current model sums up the session as a short topic in the background. The topic stays put while the agent reads, edits and runs tools, so a glance at the pane tells you what it is doing. It is the same idea as pi-herdr-tabs, without a tab title's 24-character limit.
+
+## Install
+
+```bash
+pi install git:github.com/Soleone/pi-topic
+```
+
+Or for one pi process: `pi -e ./src/index.ts` from a checkout.
 
 ## How it works
 
 - On each user request (`before_agent_start`), a deterministic fallback topic
   derived from the prompt's first line appears immediately.
-- In parallel, a bounded background request (8 s timeout, 256 output tokens)
+- In parallel, a bounded background request (15 s timeout, 1024 output tokens)
   asks Pi's currently selected model for a refined topic using the prompt plus
   a compact excerpt of the session context.
 - Once set, the topic stays stable across turns and tool executions. A late
@@ -32,18 +35,14 @@ which is sized so a full topic fits a single terminal line without wrapping;
 rendering additionally truncates to the live terminal width with an ellipsis
 as a safety net.
 
-## Development and loading
+## Development
 
 ```bash
 npm install
 npm run check
 npm test
-
-# Quick local load for one Pi process
-pi -e ./src/index.ts
-
-# Or install as a project-local Pi package
-pi install -l "$PWD"
+npm run demo            # the browser demo at http://localhost:4321
+npm run media:capture   # re-record demo/media (needs agent-browser and FFmpeg)
 ```
 
 When editing an auto-discovered copy, run `/reload` in the Pi pane or restart

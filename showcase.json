@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Soleone/showcase/main/schema/showcase.schema.json",
+  "title": "pi-topic",
+  "pitch": "A one-line topic of what you're working on, kept right above pi's input.",
+  "description": "Each request shows its own words at once, then pi's current model sums up the session as a short topic in the background. The topic holds while the agent reads, edits and runs tools, so a glance at the pane says what it is doing.",
+  "kind": "agent-extension",
+  "stage": "product",
+  "year": 2026,
+  "tech": [
+    "TypeScript",
+    "pi"
+  ],
+  "repo": "https://github.com/Soleone/pi-topic",
+  "live": "https://pi-topic.soleone.xyz",
+  "media": {
+    "hero": "demo/media/hero.png",
+    "motion": "demo/media/demo.webp",
+    "capture": "npm run media:capture"
+  },
+  "demo": {
+    "strategy": "browser-terminal",
+    "local": "npm run demo",
+    "externals": [
+      {
+        "name": "Model provider",
+        "type": "model",
+        "seam": "pi.registerProvider; the demo's extension registers a scripted provider (demo/browser/home/.pi/agent/extensions/demo-model.ts) that also answers pi-topic's topic request",
+        "standIn": "simulated",
+        "note": "The model is scripted: it knows a few prompts, the topics it returns are canned, and nothing is sent anywhere."
+      }
+    ]
+  }
+}
