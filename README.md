@@ -35,19 +35,6 @@ which is sized so a full topic fits a single terminal line without wrapping;
 rendering additionally truncates to the live terminal width with an ellipsis
 as a safety net.
 
-## Development
-
-```bash
-npm install
-npm run check
-npm test
-npm run demo            # the browser demo at http://localhost:4321
-npm run media:capture   # re-record demo/media (needs agent-browser and FFmpeg)
-```
-
-When editing an auto-discovered copy, run `/reload` in the Pi pane or restart
-Pi before testing.
-
 ## Configuration
 
 | Variable | Purpose |
@@ -61,7 +48,20 @@ state file, and no label restoration on shutdown - the widget lives entirely
 inside the Pi TUI. The two extensions can run side by side, or pi-topic can
 replace pi-herdr-tabs if the tab title is no longer needed.
 
-## Manual smoke test
+## Development
+
+```bash
+npm install
+npm run check
+npm test
+npm run demo            # the browser demo at http://localhost:4321
+npm run media:capture   # re-record demo/media (needs agent-browser and FFmpeg)
+```
+
+When editing an auto-discovered copy, run `/reload` in the Pi pane or restart
+Pi before testing.
+
+### Manual smoke test
 
 1. Load with `pi -e ./src/index.ts`.
 2. Submit `Fix the auth refresh bug` and confirm a `◆ Fix the auth refresh bug`
