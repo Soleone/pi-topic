@@ -43,7 +43,7 @@
     "@earendil-works/pi-ai": "0.84.2",
     "@earendil-works/pi-coding-agent": "0.84.2",
     "@soleone/showcase-capture": "^0.1.0",
-    "@soleone/showcase-terminal": "^0.1.0",
+    "@soleone/showcase-terminal": "^0.2.0",
     "@types/node": "^22.0.0",
     "esbuild": "0.25.10",
     "typescript": "^5.9.3"
